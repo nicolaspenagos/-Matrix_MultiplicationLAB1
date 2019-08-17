@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.GUIController" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.GUIController">
+   <top>
+      <Pane prefHeight="150.0" prefWidth="951.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <Pane prefHeight="150.0" prefWidth="958.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Pane prefHeight="356.0" prefWidth="15.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="356.0" prefWidth="16.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <Pane prefHeight="356.0" prefWidth="317.0" style="-fx-background-color: White;" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="scrollPane1" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <ScrollPane fx:id="scrollPane2" layoutX="320.0" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" />
+               </content>
+            </ScrollPane>
+            <ScrollPane fx:id="scrollPane3" layoutX="641.0" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <Label layoutX="294.0" layoutY="160.0" text="X" textFill="#0094a7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="612.0" layoutY="156.0" text="=" textFill="#0094a7">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
