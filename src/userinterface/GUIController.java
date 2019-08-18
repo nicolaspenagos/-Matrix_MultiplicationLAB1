@@ -2,8 +2,10 @@ package userinterface;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class GUIController {
@@ -17,25 +19,44 @@ public class GUIController {
     @FXML
     private ScrollPane scrollPane3;
     
-    GridPane grid1 = new GridPane();
+    @FXML
+    private TextField txtFRows1;
+
+    @FXML
+    private TextField txtFColumns1;
+
+    @FXML
+    private TextField txtFRows2;
+
+    @FXML
+    private TextField txtFColumns2;
+
+    @FXML
+    private Button generateButton;
+
+    @FXML
+    private Button multiplyButton;
     
-    GridPane grid2 = new GridPane();
+    private GridPane grid1;
     
-    GridPane grid3 = new GridPane();
+    private GridPane grid2;
     
+    private GridPane grid3;
 
     @FXML
     public void initialize(){
-   
+    	
+    	grid1 = new GridPane();
+    	grid2 = new GridPane();
+    	grid3 = new GridPane();
+    	
     	grid1.setGridLinesVisible(true);
     	grid2.setGridLinesVisible(true);
     	grid3.setGridLinesVisible(true);
-    	grid1.setAlignment(Pos.CENTER);
-    	
     
-        int[][] m = new int[15][15];
-        for(int i=0; i<15; i++) {
-        	for(int j=0; j<15; j++) {
+        int[][] m = new int[5][5];
+        for(int i=0; i<5; i++) {
+        	for(int j=0; j<5; j++) {
         		m[i][j]=1;
         		grid1.addColumn(i);
         		grid1.addRow(i);

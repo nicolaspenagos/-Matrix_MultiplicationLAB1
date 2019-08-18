@@ -1,50 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.GUIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.GUIController">
    <top>
-      <Pane prefHeight="150.0" prefWidth="951.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="150.0" prefWidth="951.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="156.0" fitWidth="945.0" layoutX="-13.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/1-01.jpg" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </top>
    <bottom>
-      <Pane prefHeight="150.0" prefWidth="958.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
-   </bottom>
-   <left>
-      <Pane prefHeight="356.0" prefWidth="15.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="356.0" prefWidth="16.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
-   </right>
-   <center>
-      <Pane prefHeight="356.0" prefWidth="317.0" style="-fx-background-color: White;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="150.0" prefWidth="916.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fx:id="scrollPane1" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
+            <ImageView fitHeight="150.0" fitWidth="951.0" layoutX="-22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/3-01.jpg" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="-25.0" stroke="BLACK" strokeType="INSIDE" width="78.0" />
+            <Label layoutX="37.0" layoutY="17.0" prefHeight="28.0" prefWidth="242.0" text="GENERATE MATRICES" textFill="WHITE">
+               <font>
+                  <Font name="Consolas Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="68.0" layoutY="50.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="68.0" layoutY="86.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFRows1" layoutX="156.0" layoutY="51.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="txtFColumns1" layoutX="156.0" layoutY="87.0" prefHeight="25.0" prefWidth="66.0" />
+            <Label layoutX="372.0" layoutY="47.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="372.0" layoutY="83.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFRows2" layoutX="460.0" layoutY="48.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="txtFColumns2" layoutX="460.0" layoutY="84.0" prefHeight="25.0" prefWidth="66.0" />
+            <Button fx:id="generateButton" layoutX="684.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: WHITE;" text="GENERATE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="multiplyButton" layoutX="686.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: WHITE;" text="MULTIPLY">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children></Pane>
+   </bottom>
+   <center>
+      <Pane prefHeight="356.0" prefWidth="961.0" style="-fx-background-color: Black;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="356.0" fitWidth="951.0" layoutX="-14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/2-01.jpg" />
+               </image>
+            </ImageView>
+            <ScrollPane fx:id="scrollPane1" layoutX="57.0" layoutY="75.0" prefHeight="209.0" prefWidth="209.0" style="-fx-background-color: white;">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="174.0" />
               </content>
             </ScrollPane>
-            <ScrollPane fx:id="scrollPane2" layoutX="320.0" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" />
-               </content>
-            </ScrollPane>
-            <ScrollPane fx:id="scrollPane3" layoutX="641.0" layoutY="39.0" prefHeight="279.0" prefWidth="279.0" style="-fx-background-color: white;">
+            <ScrollPane fx:id="scrollPane2" layoutX="342.0" layoutY="73.0" prefHeight="209.0" prefWidth="211.0" style="-fx-background-color: white;" />
+            <ScrollPane fx:id="scrollPane3" layoutX="632.0" layoutY="75.0" prefHeight="209.0" prefWidth="205.0" style="-fx-background-color: white;">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                </content>
             </ScrollPane>
-            <Label layoutX="294.0" layoutY="160.0" text="X" textFill="#0094a7">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="35.0" layoutX="41.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="239.0" />
+            <Label layoutX="41.0" layoutY="32.0" prefHeight="28.0" prefWidth="242.0" text="LAST BATTLE MATRIX" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Consolas Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="612.0" layoutY="156.0" text="=" textFill="#0094a7">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="35.0" layoutX="360.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="164.0" />
+            <Label layoutX="362.0" layoutY="33.0" text="COEFFICIENTS" textFill="WHITE">
+               <font>
+                  <Font name="Consolas Bold" size="24.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="35.0" layoutX="639.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="194.0" />
+            <Label layoutX="643.0" layoutY="33.0" text="CURRENT BATTLE" textFill="WHITE">
+               <font>
+                  <Font name="Consolas Bold" size="24.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="23.0" layoutX="280.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Label layoutX="298.0" layoutY="161.0" text="X" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="23.0" layoutX="569.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Label layoutX="584.0" layoutY="155.0" text="=" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
