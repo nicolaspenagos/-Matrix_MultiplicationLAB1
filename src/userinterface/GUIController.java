@@ -127,7 +127,7 @@ public class GUIController {
 
 				lx.setText(" " + matrix1[i][j] + " ");
 
-				grid1.add(lx, i, j);
+				grid1.add(lx, j, i);
 
 			}
 		}
@@ -142,7 +142,7 @@ public class GUIController {
 
 				lx.setText(" "+matrix2[i][j]+" ");
 				
-				grid2.add(lx, i, j);
+				grid2.add(lx, j, i);
 
 			}
 		}
@@ -151,5 +151,35 @@ public class GUIController {
 		scrollPane2.setContent(grid2);
 	
 	}
+	
+
+    @FXML
+    void multiply(ActionEvent event) {
+    	System.out.println("HOLA");
+    	battleBoard.componetToComponetMultiplier();
+    	int[][] result = battleBoard.getResult();
+    	
+    	GridPane gridX = new GridPane();
+    	gridX.setGridLinesVisible(true);
+    	grid3 = gridX;
+    	
+    	for (int i = 0; i < result.length; i++) {
+			for (int j = 0; j < result[0].length; j++) {
+
+				grid3.addColumn(i);
+				grid3.addRow(j);
+
+				Label lx = new Label();
+
+				lx.setText(" " + result[i][j] + " ");
+
+				grid3.add(lx, j, i);
+
+			}
+		}
+    	
+    	scrollPane3.setContent(grid3);
+    	
+    }
 
 }
