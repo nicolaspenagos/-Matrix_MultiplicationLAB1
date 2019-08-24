@@ -61,7 +61,7 @@
             </Label>
             <TextField fx:id="txtFRows2" layoutX="460.0" layoutY="48.0" prefHeight="25.0" prefWidth="66.0" />
             <TextField fx:id="txtFColumns2" layoutX="460.0" layoutY="84.0" prefHeight="25.0" prefWidth="66.0" />
-            <Button fx:id="generateButton" layoutX="684.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: WHITE;" text="GENERATE">
+            <Button fx:id="generateButton" layoutX="684.0" layoutY="48.0" mnemonicParsing="false" onAction="#generate" style="-fx-background-color: WHITE;" text="GENERATE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
