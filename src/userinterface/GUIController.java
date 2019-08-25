@@ -192,6 +192,7 @@ public class GUIController {
 
     @FXML
     void generateListOfMatrices1(ActionEvent event) {
+    	
     	cleanMatrices();
     	int n = Integer.parseInt(howManyTxt.getText());
     	
@@ -224,7 +225,10 @@ public class GUIController {
 			}
 		}
 		scrollPane3.setContent(grid4);
-    	
+    	/*
+    	 * MATEO AQUI PORFA COLOCA UNA VENTANA EMERGENTE QUE DIGA QUE LA LISTA HA SIDO GENERADA
+    	 * Y QUE LA PUEDE ENCONTRAR EN data/ListOfMatrices.txt
+    	 */
     }
 
 	@FXML
