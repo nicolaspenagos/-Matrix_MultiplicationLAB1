@@ -37,36 +37,58 @@
                   <Font name="Consolas Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="50.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="50.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="86.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="86.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFRows1" layoutX="156.0" layoutY="51.0" prefHeight="25.0" prefWidth="66.0" />
-            <TextField fx:id="txtFColumns1" layoutX="156.0" layoutY="87.0" prefHeight="25.0" prefWidth="66.0" />
-            <Label layoutX="372.0" layoutY="47.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
+            <TextField fx:id="txtFRows1" layoutX="124.0" layoutY="51.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="txtFColumns1" layoutX="124.0" layoutY="87.0" prefHeight="25.0" prefWidth="66.0" />
+            <Label layoutX="261.0" layoutY="47.0" prefHeight="28.0" prefWidth="242.0" text="Rows:" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="372.0" layoutY="83.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
+            <Label layoutX="261.0" layoutY="83.0" prefHeight="28.0" prefWidth="242.0" text="Columns:" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFRows2" layoutX="460.0" layoutY="48.0" prefHeight="25.0" prefWidth="66.0" />
-            <TextField fx:id="txtFColumns2" layoutX="460.0" layoutY="84.0" prefHeight="25.0" prefWidth="66.0" />
-            <Button fx:id="generateButton" layoutX="684.0" layoutY="48.0" mnemonicParsing="false" onAction="#generate" style="-fx-background-color: WHITE;" text="GENERATE">
+            <TextField fx:id="txtFRows2" layoutX="349.0" layoutY="48.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="txtFColumns2" layoutX="348.0" layoutY="84.0" prefHeight="25.0" prefWidth="66.0" />
+            <Button fx:id="generateButton" layoutX="483.0" layoutY="47.0" mnemonicParsing="false" onAction="#generate" style="-fx-background-color: WHITE;" text="GENERATE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="multiplyButton" layoutX="686.0" layoutY="81.0" mnemonicParsing="false" onAction="#multiply" style="-fx-background-color: WHITE;" text="MULTIPLY">
+            <Button fx:id="multiplyButton" layoutX="484.0" layoutY="81.0" mnemonicParsing="false" onAction="#multiply" style="-fx-background-color: WHITE;" text="MULTIPLY">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a91" height="117.0" layoutX="622.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" width="221.0" />
+            <Label layoutX="642.0" layoutY="22.0" prefHeight="17.0" prefWidth="186.0" text="Generate a list of" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="642.0" layoutY="42.0" prefHeight="17.0" prefWidth="186.0" text="multiplicable matrices" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="howManyTxt" layoutX="644.0" layoutY="93.0" prefHeight="25.0" prefWidth="77.0" />
+            <Label layoutX="646.0" layoutY="72.0" prefHeight="17.0" prefWidth="186.0" text="How many?" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="739.0" layoutY="74.0" mnemonicParsing="false" onAction="#generateListOfMatrices1" text="GENERATE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

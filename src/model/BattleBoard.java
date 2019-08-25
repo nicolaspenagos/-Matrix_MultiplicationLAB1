@@ -1,24 +1,22 @@
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 public class BattleBoard {
 
+	public final static String PATH = "data/ListOfMatrices.txt";
+	
 	private int[][] matrix1;
 	private int[][] matrix2;
 	private int[][] result;
 
+
 	public BattleBoard() {
 
 	}
-
-	//	public void setMatrix(int x, int[][] mtrx) {
-	//		
-	//		if(x == 1) {
-	//			matrix1 = mtrx;
-	//		}else if(x == 2) {
-	//			matrix2 = mtrx; 
-	//		}
-	//		
-	//	}
 
 	public int[][] getMatrix1(){
 		return matrix1;
@@ -75,6 +73,63 @@ public class BattleBoard {
 
 
 	}
+	
+	public void generateRamdonMatrices(int x) throws FileNotFoundException {
+		
+		String msg = "-------------------- MATRIX LIST --------------------\n";
+		int numberOfMatrices = x;
+		int counter = 1;
+		int temp = (int) (Math.random() * 9) + 1;
+		int[][] auxM = new int[((int)Math.random() * 9) + 1][temp];
+	
+		
+		for(int i = 0; i<auxM.length; i++) {
+			for(int j = 0; j<temp; j++) {
+				auxM[i][j] = (int) (Math.random() * 9) + 1;;	
+				msg+= " "+auxM[i][j]+" ";
+			}
+			msg+="\n";
+		}
+		msg+="\n";
+		while(counter<numberOfMatrices) {
+			
+			int m = temp;
+			int n = (int) (Math.random() * 9) + 1;
+			temp = n;
+			
+			int[][] matrixToMultiplier = new int[m][n];
+			for(int i = 0; i<m; i++) {
+				for(int j = 0; j<n; j++) {
+					matrixToMultiplier[i][j] = (int) (Math.random() * 9) + 1;
+					msg+= " "+matrixToMultiplier[i][j]+" ";
+				}
+				msg+="\n";
+			}
+			if(!(counter+1==numberOfMatrices)) 
+				msg+="\n";
+			if(counter+1==numberOfMatrices) 
+				msg+="---------------------- RESULT ----------------------\n";
+			
+			auxM = componetToComponetMultiplier(auxM, matrixToMultiplier);
+		
+			
+			if(!(counter+1==numberOfMatrices)) 
+				msg+="\n";
+			
+		
+			
+			counter++;
+		}
+		
+		for (int i = 0; i < auxM.length; i++) {
+		for (int j = 0; j < auxM[0].length; j++) {
+			msg+= " "+auxM[i][j]+" ";
+		}
+		msg+="\n";
+	}
+		result = auxM;
+		printReport(msg);
+	}
 
 	public boolean isRepeated(int x, int[][] a) {
 		boolean repeated = false;
@@ -107,7 +162,22 @@ public class BattleBoard {
 
 		result = resultTemp;
 	}
+	
+	public int[][] componetToComponetMultiplier(int[][] a, int[][] b){
 
+		int m = a.length;
+		int n = b[0].length;
+		int[][] resultTemp = new int[m][n];
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				resultTemp[i][j] = auxMulti(i,j, a, b);
+			}
+		}
+
+		return resultTemp;
+	}
+	
 	public int auxMulti(int i, int j) {
 
 		int a[] = new int[matrix1[0].length];
@@ -119,6 +189,21 @@ public class BattleBoard {
 
 		for (int k = 0; k < b.length; k++) {
 			b[k] = matrix2[k][j];
+		}
+
+		return multi(a,b);
+	}
+	
+	public int auxMulti(int i, int j, int[][] aa, int[][] bb) {
+		int a[] = new int[aa[0].length];
+		int b[] = new int[bb.length];
+	
+		for (int k = 0; k < a.length; k++) {
+			a[k] = aa[i][k];
+		}
+
+		for (int k = 0; k < b.length; k++) {
+			b[k] = bb[k][j];
 		}
 
 		return multi(a,b);
@@ -137,5 +222,30 @@ public class BattleBoard {
 		return result;
 
 	}
+	
+	public boolean isPrimeNumber(int number) {
+		
+		boolean isPrime = true;
+		int counter = 2;
+		
+		while(isPrime && counter != number) {
+			if(number%counter==0) 
+				isPrime=false;
+			counter++;
+		}
+		
+		return isPrime;
+		
+	}
 
+	public void printReport(String msg) throws FileNotFoundException{
+		
+		PrintWriter pw = new PrintWriter(new File(PATH));
+		pw.print(msg);
+		pw.close();
+		
+	}
+	
 }
+
+
