@@ -40,21 +40,22 @@ public class BattleBoard {
 		int x = 0;
 
 		if(r == false) {
-			x =(int) (Math.random() * 150) + 1; 
-			while(isRepeated(x, matrix1)) {
-				for(int i = 0; i<m; i++) {
-					for(int j = 0; j<n; j++) {
+			for(int i = 0; i<m; i++) {
+				for(int j = 0; j<n; j++) {
+					x =(int) (Math.random() * 150) + 1; 
+					while(isRepeated(x, matrix1)) {
 						x =(int) (Math.random() * 150) + 1; 
-						matrix1[i][j] = x;	
 					}
+					matrix1[i][j] = x;	
 				}
 			}
-			while(isRepeated(x, matrix2)) {
-				for(int i = 0; i<mm; i++) {
-					for(int j = 0; j<nn; j++) {
+			for(int i = 0; i<mm; i++) {
+				for(int j = 0; j<nn; j++) {
+					x = (int) (Math.random() * 150) + 1;
+					while(isRepeated(x, matrix1)) {
 						x =(int) (Math.random() * 150) + 1; 
-						matrix1[i][j] = x;	
-					}	
+					}
+					matrix2[i][j] = x;		
 				}
 			}
 		}
