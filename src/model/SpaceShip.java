@@ -10,7 +10,6 @@ public class SpaceShip {
 		this.y=y;
 	}
 	
-	
 	public int getX() {
 		return x;
 	}

@@ -3,12 +3,18 @@ package userinterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.StageStyle;
 import model.BattleBoard;
+
+import java.util.Optional;
+
 import customThreads.GUIUpdateControlThread;
 
 public class GUIController {
@@ -95,17 +101,43 @@ public class GUIController {
 
 			int rows2 = Integer.parseInt(txtFRows2.getText());
 			int columns2 = Integer.parseInt(txtFColumns2.getText());
+			
+			boolean repeat = false;
+			
+			
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText("Please answer");
+			alert.setContentText("Can the numbers be repeated?");
 
-			battleBoard.generateRandomMatrices(rows1, columns1, rows2, columns2);
-			fillAndShowMatrices();
+			ButtonType buttonTypeOne = new ButtonType("YES");
+			ButtonType buttonTypeTwo = new ButtonType("NO");
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+			
+			Optional<ButtonType> result = alert.showAndWait();
+			if(result.get() == buttonTypeOne) {
+				repeat = true;
+			}
+			
+			
+
+			battleBoard.generateRandomMatrix(rows1, columns1, rows2, columns2, repeat);
+			fillAndShowMatrix();
 
 		} catch (NumberFormatException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("Please proveide all of the information required to generate the matrix");
 
+	       alert.showAndWait();
 		}
 
 	}
 
-	public void fillAndShowMatrices() {
+	public void fillAndShowMatrix() {
 		
 		int[][] matrix1 = battleBoard.getMatrix1();
 		int[][] matrix2 = battleBoard.getMatrix2();
@@ -154,31 +186,50 @@ public class GUIController {
 	
 
     @FXML
-    void multiply(ActionEvent event) {
-    	System.out.println("HOLA");
-    	battleBoard.componetToComponetMultiplier();
-    	int[][] result = battleBoard.getResult();
-    	
-    	GridPane gridX = new GridPane();
-    	gridX.setGridLinesVisible(true);
-    	grid3 = gridX;
-    	
-    	for (int i = 0; i < result.length; i++) {
-			for (int j = 0; j < result[0].length; j++) {
+    public void multiply(ActionEvent event) {
+    	try {
+        	battleBoard.componetToComponetMultiplier();
+        	int[][] result = battleBoard.getResult();
+        	
+        	GridPane gridX = new GridPane();
+        	gridX.setGridLinesVisible(true);
+        	grid3 = gridX;
+        	
+        	for (int i = 0; i < result.length; i++) {
+    			for (int j = 0; j < result[0].length; j++) {
 
-				grid3.addColumn(i);
-				grid3.addRow(j);
+    				grid3.addColumn(i);
+    				grid3.addRow(j);
 
-				Label lx = new Label();
+    				Label lx = new Label();
 
-				lx.setText(" " + result[i][j] + " ");
+    				lx.setText(" " + result[i][j] + " ");
 
-				grid3.add(lx, j, i);
+    				grid3.add(lx, j, i);
 
-			}
-		}
-    	
-    	scrollPane3.setContent(grid3);
+    			}
+    		}
+        	
+        	scrollPane3.setContent(grid3);
+    	} 
+    	catch(NumberFormatException n) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("Please proveide all of the information required");
+
+	       alert.showAndWait();
+    	}
+    	catch(NullPointerException e) {
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
+	        alert.initStyle(StageStyle.UTILITY);
+	        alert.setTitle("Information");
+	        alert.setHeaderText("WARNING!");
+	        alert.setContentText("Please proveide all of the information required");
+
+	       alert.showAndWait();
+    	}
     	
     }
 
