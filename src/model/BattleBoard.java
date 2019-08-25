@@ -76,11 +76,12 @@ public class BattleBoard {
 	
 	public void generateRamdonMatrices(int x) throws FileNotFoundException {
 		
-		String msg = "";
+		String msg = "-------------------- MATRIX LIST --------------------\n";
 		int numberOfMatrices = x;
 		int counter = 1;
 		int temp = (int) (Math.random() * 9) + 1;
 		int[][] auxM = new int[((int)Math.random() * 9) + 1][temp];
+	
 		
 		for(int i = 0; i<auxM.length; i++) {
 			for(int j = 0; j<temp; j++) {
@@ -104,23 +105,34 @@ public class BattleBoard {
 				}
 				msg+="\n";
 			}
-			msg+="\n";
-			if(counter+1==numberOfMatrices) {
-				msg+="------------------------------------\n RESULT\n";
-			}
+			if(!(counter+1==numberOfMatrices)) 
+				msg+="\n";
+			if(counter+1==numberOfMatrices) 
+				msg+="---------------------- RESULT ----------------------\n";
+			
 			auxM = componetToComponetMultiplier(auxM, matrixToMultiplier);
-			for (int i = 0; i < auxM.length; i++) {
+			/*for (int i = 0; i < auxM.length; i++) {
 				for (int j = 0; j < auxM[0].length; j++) {
 					msg+= " "+auxM[i][j]+" ";
 				}
 				msg+="\n";
-			}
+			}*/
 			
-			msg+="\n";
+			if(!(counter+1==numberOfMatrices)) 
+				msg+="\n";
+			
+		
 			
 			counter++;
 		}
-	
+		
+		for (int i = 0; i < auxM.length; i++) {
+		for (int j = 0; j < auxM[0].length; j++) {
+			msg+= " "+auxM[i][j]+" ";
+		}
+		msg+="\n";
+	}
+		result = auxM;
 		printReport(msg);
 	}
 

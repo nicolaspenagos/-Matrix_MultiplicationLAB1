@@ -56,6 +56,8 @@ public class GUIController {
 	private GridPane grid2;
 
 	private GridPane grid3;
+	
+	private GridPane grid4;
 
 	private BattleBoard battleBoard;
 
@@ -71,10 +73,12 @@ public class GUIController {
 		grid1 = new GridPane();
 		grid2 = new GridPane();
 		grid3 = new GridPane();
+		grid4 = new GridPane();
 
 		grid1.setGridLinesVisible(true);
 		grid2.setGridLinesVisible(true);
 		grid3.setGridLinesVisible(true);
+		grid4.setGridLinesVisible(true);
 
 		battleBoard = new BattleBoard();
 
@@ -136,7 +140,7 @@ public class GUIController {
 
 			alert.showAndWait();
 		}
-
+		
 	}
 
 	public void fillAndShowMatrix() {
@@ -188,6 +192,7 @@ public class GUIController {
 
     @FXML
     void generateListOfMatrices1(ActionEvent event) {
+    	cleanMatrices();
     	int n = Integer.parseInt(howManyTxt.getText());
     	
     	try {
@@ -196,6 +201,30 @@ public class GUIController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	int[][] matrix = battleBoard.getResult();
+		
+		GridPane gridX = new GridPane();
+		grid4 = gridX;
+		grid4.setGridLinesVisible(true);
+	
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+
+				grid4.addColumn(i);
+				grid4.addRow(j);
+
+				Label lx = new Label();
+
+				lx.setText(" " + matrix[i][j] + " ");
+
+				grid4.add(lx, j, i);
+
+			}
+		}
+		scrollPane3.setContent(grid4);
+    	
     }
 
 	@FXML
@@ -249,6 +278,14 @@ public class GUIController {
 
 		GridPane gridX = new GridPane();
 		scrollPane3.setContent(gridX);
+
+	}
+	
+	public void cleanMatrices() {
+
+		GridPane gridX = new GridPane();
+		scrollPane1.setContent(gridX);
+		scrollPane2.setContent(gridX);
 
 	}
 
