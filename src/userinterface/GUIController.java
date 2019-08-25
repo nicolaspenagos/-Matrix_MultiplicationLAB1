@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 import model.BattleBoard;
 
@@ -93,7 +94,7 @@ public class GUIController {
 
 	@FXML
 	void generate(ActionEvent event) {
-
+		cleanResult();
 		try {
 
 			int rows1 = Integer.parseInt(txtFRows1.getText());
@@ -200,11 +201,13 @@ public class GUIController {
 
     				grid3.addColumn(i);
     				grid3.addRow(j);
-
+    				
     				Label lx = new Label();
 
     				lx.setText(" " + result[i][j] + " ");
-
+    			
+    				if(battleBoard.isPrimeNumber(result[i][j]))
+    					lx.setTextFill(Color.DODGERBLUE);
     				grid3.add(lx, j, i);
 
     			}
@@ -230,6 +233,13 @@ public class GUIController {
 
 	       alert.showAndWait();
     	}
+    	
+    }
+    
+    public void cleanResult() {
+    	
+    	GridPane gridX = new GridPane();
+    	scrollPane3.setContent(gridX);
     	
     }
 

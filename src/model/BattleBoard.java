@@ -137,5 +137,20 @@ public class BattleBoard {
 		return result;
 
 	}
+	
+	public boolean isPrimeNumber(int number) {
+		
+		boolean isPrime = true;
+		int counter = 2;
+		
+		while(isPrime && counter != number) {
+			if(number%counter==0) 
+				isPrime=false;
+			counter++;
+		}
+		
+		return isPrime;
+		
+	}
 
 }
