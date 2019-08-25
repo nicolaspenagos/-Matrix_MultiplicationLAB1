@@ -111,12 +111,7 @@ public class BattleBoard {
 				msg+="---------------------- RESULT ----------------------\n";
 			
 			auxM = componetToComponetMultiplier(auxM, matrixToMultiplier);
-			/*for (int i = 0; i < auxM.length; i++) {
-				for (int j = 0; j < auxM[0].length; j++) {
-					msg+= " "+auxM[i][j]+" ";
-				}
-				msg+="\n";
-			}*/
+		
 			
 			if(!(counter+1==numberOfMatrices)) 
 				msg+="\n";
