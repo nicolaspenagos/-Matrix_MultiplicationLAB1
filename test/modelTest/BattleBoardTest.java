@@ -1,4 +1,4 @@
-package model;
+package modelTest;
 
 
 import static org.junit.Assert.assertFalse;
@@ -44,5 +44,4 @@ public class BattleBoardTest {
 		assertFalse("The boolean should be false", b.isRepeated(y, a));
 	}
 }
-
 
