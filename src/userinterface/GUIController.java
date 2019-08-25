@@ -2,7 +2,6 @@ package userinterface;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -199,7 +198,6 @@ public class GUIController {
     	try {
 			battleBoard.generateRamdonMatrices(n);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
@@ -225,10 +223,12 @@ public class GUIController {
 			}
 		}
 		scrollPane3.setContent(grid4);
-    	/*
-    	 * MATEO AQUI PORFA COLOCA UNA VENTANA EMERGENTE QUE DIGA QUE LA LISTA HA SIDO GENERADA
-    	 * Y QUE LA PUEDE ENCONTRAR EN data/ListOfMatrices.txt
-    	 */
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.initStyle(StageStyle.UTILITY);
+		alert.setTitle("Information");
+		alert.setHeaderText("The list has been generated");
+		alert.setContentText("If you want to see all of the matrices, please go to the text file");
+		alert.showAndWait();
     }
 
 	@FXML

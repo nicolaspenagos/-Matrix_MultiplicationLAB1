@@ -4,6 +4,7 @@ package modelTest;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -28,42 +29,38 @@ public class BattleBoardTest {
 	
 	public void setupScenary2() {
 		
-		b = new BattleBoard();
-		
 		matrixA = new int[2][2];
-		matrixA[0][0] = 1;
-		matrixA[0][1] = -2;
-	    matrixA[1][0] = 2;
-	    matrixA[1][1] = 4;
+			matrixA[0][0] = 1;
+			matrixA[0][1] = -2;
+			matrixA[1][0] = 2;
+			matrixA[1][1] = 4;
 	    
-		matrixB = new int[3][3];
-		matrixB[0][0] = 32;
-		matrixB[0][1] = 1;
-	    matrixB[0][2] = 72;
-	    matrixB[1][0] = 4;
-		matrixB[1][1] = 67;
-		matrixB[1][2] = 8;
-	    matrixB[2][0] = 23;
-	    matrixB[2][1] = 42;
-	    matrixB[2][2] = 2;
+	    matrixB = new int[3][3];
+			matrixB[0][0] = 32;
+			matrixB[0][1] = 1;
+			matrixB[0][2] = 72;
+			matrixB[1][0] = 4;
+			matrixB[1][1] = 67;
+			matrixB[1][2] = 8;
+			matrixB[2][0] = 23;
+			matrixB[2][1] = 42;
+			matrixB[2][2] = 2;
 	    
 	    matrixC = new int[3][2]; 
-	    matrixC[0][0] = 1;
-	    matrixC[0][1] = -1;
-	    matrixC[1][0] = -2;
-	    matrixC[1][1] = 3;
-	    matrixC[2][0] = 2;
-	    matrixC[2][1] = 4;
+	    	matrixC[0][0] = 1;
+	    	matrixC[0][1] = -1;
+	    	matrixC[1][0] = -2;
+	    	matrixC[1][1] = 3;
+	    	matrixC[2][0] = 2;
+	    	matrixC[2][1] = 4;
 	    
 	    matrixD = new int[2][1]; 
-	    matrixD[0][0] = 4;
-	    matrixD[1][0] = 12;
+	    	matrixD[0][0] = 4;
+	    	matrixD[1][0] = 12;
 	  
 	}
 
 	public void setupScenary3() {
-		
-		b = new BattleBoard();
 		
 		aa = new int [3];
 		bb = new int [3];
@@ -112,7 +109,7 @@ public class BattleBoardTest {
 	
 	@Test
 	public void componetToComponetMultiplierTest() {
-		
+		setupScenary1();
 		setupScenary2();
 		
 		int[][] resultAD = new int[2][1];
@@ -133,7 +130,7 @@ public class BattleBoardTest {
 	
 	@Test
 	public void auxMultiTest() {
-		
+		setupScenary1();
 		setupScenary2();
 
 		assertTrue("The multiplication is incorrect", b.auxMulti(0, 0, matrixA, matrixD)==-20);
@@ -147,7 +144,7 @@ public class BattleBoardTest {
 	
 	@Test
 	public void multiTest() {
-		
+		setupScenary1();
 		setupScenary3();
 
 		assertTrue("The multiplication is incorrect", b.multi(aa,aa)==3);
@@ -156,7 +153,7 @@ public class BattleBoardTest {
 	}
 	
 	@Test
-	public void isPrimeTest() {
+	public void isPrimeNumberTest() {
 		
 		setupScenary1();
 		assertTrue("The number is prime", b.isPrimeNumber(7));
@@ -177,7 +174,12 @@ public class BattleBoardTest {
 	public void generateRamdonMatricesTest() {
 		
 		setupScenary1();
-		assertTrue("The matrices were not generated", b.getResult()==null);
+		try {
+			b.generateRamdonMatrices(5);
+			assertTrue("The matrices were not generated", b.getResult()!=null);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
