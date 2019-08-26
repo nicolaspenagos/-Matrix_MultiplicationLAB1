@@ -241,14 +241,9 @@ public class GUIController {
 				if (comboBox1.getValue().equals("Component by component")) {
 					battleBoard.componetToComponetMultiplier();
 				} else if(comboBox1.getValue().equals("Strassen Algorithm")){
-					// ---------------------------------
-					// Strassen Algorithm
-					// -------------------------------
 					battleBoard.strassenAlgorithm();
 				}else {
-					// ---------------------------------
-					// Column Combination
-					// -------------------------------
+					battleBoard.columnCombinationAlgorithm();
 				}
 				int[][] result = battleBoard.getResult();
 

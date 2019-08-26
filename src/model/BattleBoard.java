@@ -424,6 +424,47 @@ public class BattleBoard {
     		}
     	return cleanMatrix;
     }
+	
+	
+	public void columnCombinationAlgorithm() {
+    	result = columnCombination();
+    }
+    
+    public int[][] columnCombination(){
+    	int[][] columnsCombinated = new int[matrix1.length][matrix2[0].length];
+    		for(int i = 0 ; i < matrix1.length ; i++) {
+    			int[] v = obtainVector(getMatrix1(), i);
+    			addRow(columnsCombinated, multMatrixVector(matrix2, v), i);
+    		}
+    	return columnsCombinated;
+    }
+    
+    public int[] multMatrixVector(int[][] A, int[] v) {
+    	int[] resultingVector = new int[A.length];
+    		for(int i = 0 ; i < A[0].length ; i++) {
+    			int sum = 0;
+    			for(int j = 0; j < A.length -1; j++) {
+    				sum += (v[j]*A[i][j]);
+    			}
+    			resultingVector[i] = sum;
+    			
+    		}
+    	return resultingVector;
+    }
+    
+    public int[] obtainVector(int[][] A, int pos) {
+    	int[] v = new int[A[0].length];
+    		for(int i = 0 ; i < A[pos].length ; i++) {
+    			v[i] = A[pos][i];
+    		}
+    	return v;
+    }
+    
+    public void addRow(int[][] A, int[] r, int pos) {
+    	for(int i = 0 ; i < r.length - 1; i++) {
+    		A[pos][i] = r[i];
+    	}
+    }
 
 	public void printReport(String msg) throws FileNotFoundException{
 		
