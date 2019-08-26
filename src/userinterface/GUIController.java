@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -22,6 +23,9 @@ public class GUIController {
 
 	@FXML
 	private ScrollPane scrollPane1;
+
+	@FXML
+	private ComboBox<String> comboBox1;
 
 	@FXML
 	private ScrollPane scrollPane2;
@@ -55,7 +59,7 @@ public class GUIController {
 	private GridPane grid2;
 
 	private GridPane grid3;
-	
+
 	private GridPane grid4;
 
 	private BattleBoard battleBoard;
@@ -139,7 +143,7 @@ public class GUIController {
 
 			alert.showAndWait();
 		}
-		
+
 	}
 
 	public void fillAndShowMatrix() {
@@ -189,24 +193,23 @@ public class GUIController {
 
 	}
 
-    @FXML
-    void generateListOfMatrices1(ActionEvent event) {
-    	
-    	cleanMatrices();
-    	int n = Integer.parseInt(howManyTxt.getText());
-    	
-    	try {
+	@FXML
+	void generateListOfMatrices1(ActionEvent event) {
+
+		cleanMatrices();
+		int n = Integer.parseInt(howManyTxt.getText());
+
+		try {
 			battleBoard.generateRamdonMatrices(n);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-    	
-    	int[][] matrix = battleBoard.getResult();
-		
+
+		int[][] matrix = battleBoard.getResult();
+
 		GridPane gridX = new GridPane();
 		grid4 = gridX;
 		grid4.setGridLinesVisible(true);
-	
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -229,51 +232,63 @@ public class GUIController {
 		alert.setHeaderText("The list has been generated");
 		alert.setContentText("If you want to see all of the matrices, please go to the text file");
 		alert.showAndWait();
-    }
+	}
 
 	@FXML
 	public void multiply(ActionEvent event) {
-		try {
-			battleBoard.componetToComponetMultiplier();
-			int[][] result = battleBoard.getResult();
-
-			GridPane gridX = new GridPane();
-			gridX.setGridLinesVisible(true);
-			grid3 = gridX;
-
-			for (int i = 0; i < result.length; i++) {
-				for (int j = 0; j < result[0].length; j++) {
-
-					grid3.addColumn(i);
-					grid3.addRow(j);
-
-					Label lx = new Label();
-
-					lx.setText(" " + result[i][j] + " ");
-					if (battleBoard.isPrimeNumber(result[i][j]))
-						lx.setTextFill(Color.DODGERBLUE);
-					grid3.add(lx, j, i);
-
+		if (comboBox1.getValue() != null) {
+			try {
+				if (comboBox1.getValue().equals("Component by component")) {
+					battleBoard.componetToComponetMultiplier();
+				} else if(comboBox1.getValue().equals("Strassen Algorithm")){
+					// ---------------------------------
+					// Strassen Algorithm
+					// -------------------------------
+				}else {
+					// ---------------------------------
+					// Column Combination
+					// -------------------------------
 				}
+				int[][] result = battleBoard.getResult();
+
+				GridPane gridX = new GridPane();
+				gridX.setGridLinesVisible(true);
+				grid3 = gridX;
+
+				for (int i = 0; i < result.length; i++) {
+					for (int j = 0; j < result[0].length; j++) {
+
+						grid3.addColumn(i);
+						grid3.addRow(j);
+
+						Label lx = new Label();
+
+						lx.setText(" " + result[i][j] + " ");
+						if (battleBoard.isPrimeNumber(result[i][j]))
+							lx.setTextFill(Color.DODGERBLUE);
+						grid3.add(lx, j, i);
+
+					}
+				}
+
+				scrollPane3.setContent(grid3);
+			} catch (NumberFormatException n) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("WARNING!");
+				alert.setContentText("Please proveide all of the information required");
+
+				alert.showAndWait();
+			} catch (NullPointerException e) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("Information");
+				alert.setHeaderText("WARNING!");
+				alert.setContentText("Please proveide all of the information required");
+
+				alert.showAndWait();
 			}
-
-			scrollPane3.setContent(grid3);
-		} catch (NumberFormatException n) {
-			Alert alert = new Alert(Alert.AlertType.WARNING);
-			alert.initStyle(StageStyle.UTILITY);
-			alert.setTitle("Information");
-			alert.setHeaderText("WARNING!");
-			alert.setContentText("Please proveide all of the information required");
-
-			alert.showAndWait();
-		} catch (NullPointerException e) {
-			Alert alert = new Alert(Alert.AlertType.WARNING);
-			alert.initStyle(StageStyle.UTILITY);
-			alert.setTitle("Information");
-			alert.setHeaderText("WARNING!");
-			alert.setContentText("Please proveide all of the information required");
-
-			alert.showAndWait();
 		}
 
 	}
@@ -284,7 +299,7 @@ public class GUIController {
 		scrollPane3.setContent(gridX);
 
 	}
-	
+
 	public void cleanMatrices() {
 
 		GridPane gridX = new GridPane();
