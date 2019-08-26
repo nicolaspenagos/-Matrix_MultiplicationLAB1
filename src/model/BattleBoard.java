@@ -236,6 +236,194 @@ public class BattleBoard {
 		return isPrime;
 		
 	}
+	
+	public void strassenAlgorithm() {
+		result = strassenFirstStep();
+	}
+	
+	public int[][] strassenFirstStep() {
+		int[][] momResult;
+		int[][] result;
+		
+		if(matrix1.length == matrix1[0].length && matrix2.length == matrix2[0].length && isPowerOfTwo(matrix1.length)) {
+			momResult = strassenMulti(matrix1, matrix2);
+		}else {
+			int n = greaterToPowerOfTwo(matrix1.length, matrix1[0].length, matrix2[0].length);
+			int[][] matrixTemp1 = completeMatrix(matrix1, n);
+			int[][] matrixTemp2 = completeMatrix(matrix2, n);
+			momResult = strassenMulti(matrixTemp1, matrixTemp2);
+		}
+		
+		result = clearZeros(momResult, matrix1.length, matrix2[0].length);
+		return result;
+	}
+	
+	public int[][] strassenMulti(int[][] A, int[][] B) {
+		int n = A.length;
+		int[][] res =  new int[n][n];
+		
+		if(n == 1) {
+			res[0][0] = A[0][0] * B[0][0];
+		}else{
+			
+		//Create subdivision of matrix A
+			int[][] a = new int[n/2][n/2];
+			int[][] b = new int[n/2][n/2];
+			int[][] c = new int[n/2][n/2];
+			int[][] d = new int[n/2][n/2];
+			
+		//Create subdivision of matrix A
+			int[][] e = new int[n/2][n/2];
+			int[][] f = new int[n/2][n/2];
+			int[][] g = new int[n/2][n/2];
+			int[][] h = new int[n/2][n/2];
+		
+		// dividing matrix A into 4 parts
+			divideArray(A, a, 0, 0);
+			divideArray(A, b, 0, n / 2);
+			divideArray(A, c, n / 2, 0);
+			divideArray(A, d, n / 2, n / 2);
+
+        // dividing matrix B into 4 parts
+			divideArray(B, e, 0, 0);
+			divideArray(B, f, 0, n / 2);
+			divideArray(B, g, n / 2, 0);
+			divideArray(B, h, n / 2, n / 2);
+
+		/** 
+        p1 = (a + d)(e + h)
+        p2 = (c + d)e
+        p3 = a(f - h)
+        p4 = d(g - e)
+        p5 = (a + b)h
+        p6 = (c - a) (e + f)
+        p7 = (b - d) (g + h)
+        **/
+		
+			int[][] p1 = strassenMulti(addMatrices(a, d), addMatrices(e, h));
+            int[][] p2 = strassenMulti(addMatrices(c,d),e);
+            int[][] p3 = strassenMulti(a, subMatrices(f, h));           
+            int[][] p4 = strassenMulti(d, subMatrices(g, e));
+            int[][] p5 = strassenMulti(addMatrices(a,b), h);
+            int[][] p6 = strassenMulti(subMatrices(c, a), addMatrices(e, f));
+            int[][] p7 = strassenMulti(subMatrices(b, d), addMatrices(g, h));            
+		
+        /**
+        C11 = p1 + p4 - p5 + p7
+        C12 = p3 + p5
+        C21 = p2 + p4
+        C22 = p1 - p2 + p3 + p6
+      **/
+         
+          int[][] C11 = addMatrices(subMatrices(addMatrices(p1, p4), p5), p7);
+          int[][] C12 = addMatrices(p3, p5);
+          int[][] C21 = addMatrices(p2, p4);
+          int[][] C22 = addMatrices(subMatrices(addMatrices(p1, p3), p2), p6);
+			
+       // adding all subarray back into one
+          copySubArray(C11, res, 0, 0);
+          copySubArray(C12, res, 0, n / 2);
+          copySubArray(C21, res, n / 2, 0);
+          copySubArray(C22, res, n / 2, n / 2);
+		}
+		return res;
+	}
+	
+	public int greaterToPowerOfTwo(int n, int m, int k) {
+		int finalN = 0;
+			if(n>= m && n >= k) {
+				finalN = n;
+			}else if(m >= n && m >= k) {
+				finalN = m;
+			}else if(k >= n && k >= m) {
+				finalN = k;
+			}
+		return getNextPowerOfTwo(finalN);
+	}
+	
+	public int[][] completeMatrix(int[][] A, int n){
+		//n equals to the size of the matrix A turned into a squared matrix of the form 2^n x 2^n filled with 0´s in the missing rows and columns 
+		int[][] B = new int[n][n];
+			for(int i = 0 ; i < A.length ; i++) {
+				for(int j = 0 ; j < A[0].length ; j++) {
+					B[i][j] = A[i][j];
+				}
+			}
+		return B;
+	}
+	
+	public boolean isPowerOfTwo(int x) {
+		boolean isPower = false;
+			if((x%2) == 0) {
+				if(x/2 == 1) {
+					isPower = true;
+				}else {
+					isPowerOfTwo(x/2);
+				}
+			}else {
+				isPower = false;
+			}
+		return isPower;
+	}
+	
+	public int getNextPowerOfTwo(int value) {
+	    int result = value;
+	    result -= 1;
+	    result |= result >> 16;
+	    result |= result >> 8;
+	    result |= result >> 4;
+	    result |= result >> 2;
+	    result |= result >> 1;
+	    return result + 1;
+	}
+	
+	public void divideArray(int[][] P, int[][] C, int iB, int jB) {
+		for(int i1 = 0, i2 = iB; i1 < C.length ; i1++ , i2++ ){
+			for(int j1 = 0, j2 = jB ; j1 <C.length ; j1++ , j2++){
+					C[i1][j1] = P[i2][j2];
+			}
+		}
+	}
+	
+	//Adding two matrices
+	public int[][] addMatrices(int[][] a, int[][] b) {
+        int n = a.length;
+        int[][] res = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                res[i][j] = a[i][j] + b[i][j];
+            }
+        }
+        return res;
+    }
+
+    //Subtracting two matrices
+    public int[][] subMatrices(int[][] a, int[][] b) {
+        int n = a.length;
+        int[][] res = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                res[i][j] = a[i][j] - b[i][j];
+            }
+        }
+        return res;
+    }
+    
+    public void copySubArray(int[][] X, int[][] R, int iB, int jB) {
+        for(int i1 = 0, i2 = iB; i1 < X.length; i1++, i2++)
+            for(int j1 = 0, j2 = jB; j1 < X.length; j1++, j2++)
+                R[i2][j2] = X[i1][j1];
+    }
+	
+	public int[][] clearZeros(int[][] A, int n, int m){
+    	int[][] cleanMatrix = new int[n][m];
+    		for(int i = 0 ; i < n ; i++) {
+    			for(int j = 0 ; j < m ; j++) {
+    				cleanMatrix[i][j] = A[i][j];
+    			}
+    		}
+    	return cleanMatrix;
+    }
 
 	public void printReport(String msg) throws FileNotFoundException{
 		

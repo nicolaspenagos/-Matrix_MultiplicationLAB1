@@ -244,6 +244,7 @@ public class GUIController {
 					// ---------------------------------
 					// Strassen Algorithm
 					// -------------------------------
+					battleBoard.strassenAlgorithm();
 				}else {
 					// ---------------------------------
 					// Column Combination
