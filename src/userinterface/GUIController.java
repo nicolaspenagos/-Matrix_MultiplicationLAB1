@@ -240,9 +240,13 @@ public class GUIController {
 			try {
 				if (comboBox1.getValue().equals("Component by component")) {
 					battleBoard.componetToComponetMultiplier();
-				} else {
+				} else if(comboBox1.getValue().equals("Strassen Algorithm")){
 					// ---------------------------------
-					// Calde pone tu metodo aquii
+					// Strassen Algorithm
+					// -------------------------------
+				}else {
+					// ---------------------------------
+					// Column Combination
 					// -------------------------------
 				}
 				int[][] result = battleBoard.getResult();

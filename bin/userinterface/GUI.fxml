@@ -100,8 +100,9 @@
              
               <items>
              <FXCollections fx:factory="observableArrayList">
-               <String fx:id="Option1" fx:value="strassenMulti" />
+               <String fx:id="Option1" fx:value="Strassen Algorithm" />
                <String fx:id="Option2" fx:value="Component by component" />
+                <String fx:id="Option3" fx:value="Column Combination" />
               </FXCollections>
             </items>
             </ComboBox>
